@@ -6,6 +6,7 @@ import "./Kontakt.scss";
 //import validateInfoKontakt from "./validateInfoKontakt";
 import { Link } from "react-router-dom";
 import KontaktContext from "./context/KontaktContext";
+import { v4 as uuid } from "uuid";
 
 /*const { handleChange, values, handleSubmit, errors } = useFormKontakt(
   validateInfoKontakt
@@ -24,7 +25,7 @@ const Kontakt = () => {
   const [datumrodenja, setDatumRodenja] = useState("");
   const [kontakt, setKontakt] = useState(""); */
 
-  const { kontakti, setKontakti } = useContext(KontaktContext);
+  const { kontakti, addKontakt } = useContext(KontaktContext);
 
   //console.log(kontakti);
 
@@ -33,6 +34,7 @@ const Kontakt = () => {
     prezime: "",
     datumrodenja: "",
     kontakt: "",
+    id: uuid(),
   });
 
   /*constructor(props) {
@@ -56,8 +58,6 @@ const Kontakt = () => {
     console.log(data);
   };*/
 
-  /*render() {*/
-
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -67,15 +67,15 @@ const Kontakt = () => {
     //setKontakti(data);
     //console.log(data);
     console.log(kontakti);
-
+    addKontakt(data);
     //let listaKontakata = [];
     //listaKontakata.push(Object.values(kontakti));
     //console.log(listaKontakata);
   };
 
-  const handleClick = () => {
-    setKontakti((...kontakti) => ({ ...data }));
-  };
+  // const handleClick = () => {
+  //   setKontakti((...kontakti) => ({ ...data }));
+  // };
 
   /*useEffect(() => {
     setKontakti(data);
@@ -90,8 +90,8 @@ const Kontakt = () => {
           <input
             placeholder="Ime"
             name="ime"
-            /*value={values.ime}*/
-            /*onChange={handleChange}*/
+            /*value={values.ime}/
+            /onChange={handleChange}*/
             value={data.ime}
             onChange={handleChange}
             //ref={(input) => (this.ime = input)}
@@ -148,7 +148,7 @@ const Kontakt = () => {
         <Button
           type="submit"
           //onClick={() => setKontakti((kontakti) => ({ ...data }))}
-          onClick={handleClick}
+          //onClick={handleClick}
         >
           Spremi
         </Button>
