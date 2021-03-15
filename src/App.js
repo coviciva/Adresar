@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import Form from "./Form";
+import { Route, Switch, Redirect } from "react-router-dom";
+import Kontakt from "./Kontakt";
+import FormSuccess from "./FormSuccess";
+import { KontaktContextProvider } from "./context/KontaktContext";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <KontaktContextProvider>
+        <Switch>
+          <Route path="/kontakt" exact component={Kontakt} />
+          <Route path="/adresar" exact component={FormSuccess} />
+          <Route path="/" exact component={Form} />
+          <Redirect to="/" />
+        </Switch>
+        {/* <Form /> */}
+      </KontaktContextProvider>
     </div>
   );
 }

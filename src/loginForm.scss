@@ -1,0 +1,36 @@
+$errorColor: red;
+
+.error {
+  color: $errorColor;
+}
+
+.field {
+  width: 350px;
+}
+
+.forma {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 40px;
+}
+
+.ui.form {
+  background-color: #E8A87C;
+  padding: 20px;
+  border: 1px solid  #2a8773;
+  box-shadow: 5px 10px #3b7d6f;
+  border-radius: 5px;
+}
+
+
+.container {
+  background-image: linear-gradient(
+    -225deg,
+    #73c7b5 0%,
+    #40a892 48%,
+    #2a8773 100%
+  );
+  height: 100vh;
+}

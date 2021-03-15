@@ -1,0 +1,14 @@
+.adresar {
+  display: flex;
+  align-items: center;
+  //justify-content: center;
+  flex-direction: column;
+  padding-top: 30px;
+  background-image: linear-gradient(
+    -225deg,
+    #73c7b5 0%,
+    #40a892 48%,
+    #2a8773 100%
+  );
+  height: 100vh;
+}
