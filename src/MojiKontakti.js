@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import KontaktContext from "./context/KontaktContext";
 import "./MojiKontakti.scss";
 import { Icon } from "semantic-ui-react";
@@ -6,11 +6,13 @@ import { Icon } from "semantic-ui-react";
 const MojiKontakti = (props) => {
   const { kontakti, setKontakti } = useContext(KontaktContext);
 
+  const [listaKontakata, setListaKontakata] = useState([]);
+
   const [isClicked, setIsClicked] = useState(false);
 
-  /*  useEffect(() => {
+  useEffect(() => {
     setListaKontakata([...listaKontakata, { kontakti }]);
-  }, [kontakti]); */
+  }, [kontakti]);
 
   const omiljeni = () => {
     setIsClicked(!isClicked);
@@ -20,7 +22,7 @@ const MojiKontakti = (props) => {
     <div>
       {console.log("MojiKontakti")}
       {console.log(kontakti)}
-      {/* {console.log(listaKontakata)} */}
+      {console.log(listaKontakata)}
       {/* <h1 className="tekst">Moji kontakti</h1> */}
 
       <div className="kartica">

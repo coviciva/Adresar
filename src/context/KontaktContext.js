@@ -3,7 +3,7 @@ import React, { createContext, useState } from "react";
 const KontaktContext = createContext();
 
 function KontaktContextProvider(props) {
-  const [kontakti, setKontakti] = useState([]);
+  const [kontakti, setKontakti] = useState({});
 
   return (
     <KontaktContext.Provider value={{ kontakti, setKontakti }}>
