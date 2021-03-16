@@ -3,11 +3,34 @@
     padding: 10px;
     background-color: #c3ebda;
     border-radius: 5px;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 i.icon.star:hover {
     cursor: pointer;
 }
 
+.ui.search {
+    display: flex;
+    padding-top: 25px;
+    align-items: center;
+    justify-content: center;
+}
 
+
+
+.results.transition.visible {
+  width: 0px;
+  height: 0px;
+  
+    .message {
+        .header {
+            display: none;
+            visibility: hidden; 
+        }
+    }
+}
+
+.data {
+    color: black;
+}

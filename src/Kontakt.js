@@ -35,6 +35,7 @@ const Kontakt = () => {
     datumrodenja: "",
     kontakt: "",
     id: uuid(),
+    clicked: false,
   });
 
   /*constructor(props) {

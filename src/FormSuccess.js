@@ -13,6 +13,11 @@ const FormSuccess = () => {
       <Link to="/kontakt">
         <button className="ui button">Novi kontakt</button>
       </Link>
+      <div className="favoriti">
+        <Link to="/adresar/omiljeni">
+          <button className="ui button">Favoriti</button>
+        </Link>
+      </div>
       <MojiKontakti />
     </div>
   );
