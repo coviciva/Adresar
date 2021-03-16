@@ -1,12 +1,14 @@
 //import React, { useContext } from "react";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Button, Form } from "semantic-ui-react";
 import "./Kontakt.scss";
 //import useFormKontakt from "./useFormKontakt";
 //import validateInfoKontakt from "./validateInfoKontakt";
-import { Link } from "react-router-dom";
 import KontaktContext from "./context/KontaktContext";
 import { v4 as uuid } from "uuid";
+import { useHistory } from "react-router-dom";
+//import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 /*const { handleChange, values, handleSubmit, errors } = useFormKontakt(
   validateInfoKontakt
@@ -20,14 +22,9 @@ const options = [
 ];
 
 const Kontakt = () => {
-  /*   const [ime, setIme] = useState("");
-  const [prezime, setPrezime] = useState("");
-  const [datumrodenja, setDatumRodenja] = useState("");
-  const [kontakt, setKontakt] = useState(""); */
+  const { kontakti, addKontakt, editItem, uredi } = useContext(KontaktContext);
 
-  const { kontakti, addKontakt } = useContext(KontaktContext);
-
-  //console.log(kontakti);
+  let history = useHistory();
 
   const [data, setData] = useState({
     ime: "",
@@ -38,49 +35,47 @@ const Kontakt = () => {
     clicked: false,
   });
 
-  /*constructor(props) {
-    super(props);
-    this.state = {
-      ime: "",
-      prezime: "",
-      datumrodenja: "",
-      kontakt: "",
-    };
-  }*/
-
-  /*handleChange = ({ target }) => {
-    this.setState({ [target.name]: target.value });
-    //console.log(target.value);
-  };*/
-
-  /*handleSubmit = (event) => {
-    event.preventDefault();
-    const data = this.state;
-    console.log(data);
-  };*/
-
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //setKontakti(data);
-    //console.log(data);
+
     console.log(kontakti);
-    addKontakt(data);
-    //let listaKontakata = [];
-    //listaKontakata.push(Object.values(kontakti));
-    //console.log(listaKontakata);
+    if (!editItem) {
+      addKontakt(data);
+    } else {
+      setData(editItem);
+      console.log("kontakt", data);
+      uredi(
+        data.ime,
+        data.prezime,
+        data.datumrodenja,
+        data.kontakt,
+        data.clicked,
+        editItem.id
+      );
+
+      console.log("Uredujem");
+    }
+    history.push("/adresar");
   };
 
-  // const handleClick = () => {
-  //   setKontakti((...kontakti) => ({ ...data }));
-  // };
-
-  /*useEffect(() => {
-    setKontakti(data);
-  }, [data]);*/
+  useEffect(() => {
+    if (editItem) {
+      setData(editItem);
+    } else {
+      setData({
+        ime: "",
+        prezime: "",
+        datumrodenja: "",
+        kontakt: "",
+        id: uuid(),
+        clicked: false,
+      });
+    }
+  }, [editItem]);
 
   return (
     <div className="kontakt">
@@ -95,7 +90,8 @@ const Kontakt = () => {
             /onChange={handleChange}*/
             value={data.ime}
             onChange={handleChange}
-            //ref={(input) => (this.ime = input)}
+            required
+            maxLength="100"
           />
           {/* {errors.ime && <p className="error">{errors.ime}</p>} */}
         </Form.Field>
@@ -108,7 +104,8 @@ const Kontakt = () => {
               onChange={handleChange}*/
             value={data.prezime}
             onChange={handleChange}
-            //ref={(input) => (this.prezime = input)}
+            required
+            maxLength="300"
           />
           {/* {errors.prezime && <p className="error">{errors.prezime}</p>} */}
         </Form.Field>
@@ -120,9 +117,15 @@ const Kontakt = () => {
             name="datumrodenja"
             value={data.datumrodenja}
             onChange={handleChange}
-            //ref={(input) => (this.datumrodenja = input)}
           />
         </Form.Field>
+
+        {/*         <DatePicker
+          selected={data.datumrodenja}
+          onChange={handleChange}
+          placeholderText="Datum rođenja"
+          //value={data.datumrodenja}
+        /> */}
 
         <Form.Select
           fluid
@@ -130,6 +133,7 @@ const Kontakt = () => {
           options={options}
           placeholder="Vrsta kontakta"
           name="vrstakontakta"
+          required
         />
 
         <Form.Field>
@@ -141,23 +145,16 @@ const Kontakt = () => {
               onChange={handleChange}*/
             value={data.kontakt}
             onChange={handleChange}
-            //ref={(input) => (this.kontakt = input)}
+            required
           />
           {/* {errors.kontakt && <p className="error">{errors.kontakt}</p>} */}
         </Form.Field>
-        {/* <Link to="/adresar"> */}
-        <Button
-          type="submit"
-          //onClick={() => setKontakti((kontakti) => ({ ...data }))}
-          //onClick={handleClick}
-        >
-          Spremi
-        </Button>
-        {/* </Link> */}
 
-        <Link to="/adresar">
+        <Button type="submit">Spremi</Button>
+
+        {/*         <Link to="/adresar">
           <Button type="submit">Moj adresar</Button>
-        </Link>
+        </Link> */}
       </Form>
 
       <h3>Ime: {data.ime}</h3>
@@ -167,6 +164,5 @@ const Kontakt = () => {
     </div>
   );
 };
-//}
 
 export default Kontakt;

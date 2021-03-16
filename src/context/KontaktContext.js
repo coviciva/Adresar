@@ -1,9 +1,14 @@
 import React, { createContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const KontaktContext = createContext();
 
 function KontaktContextProvider(props) {
   const [kontakti, setKontakti] = useState([]);
+
+  const [editItem, setEditItem] = useState(null);
+
+  let history = useHistory();
 
   const [detaljiK, setDetalji] = useState({
     ime: "",
@@ -41,9 +46,51 @@ function KontaktContextProvider(props) {
     setDetalji(detaljnikontakt);
   };
 
+  const izbrisi = (id) => {
+    setKontakti(kontakti.filter((kontakt) => kontakt.id !== id));
+    history.push("/adresar");
+  };
+
+  const uredi = (i, p, dr, k, c, id) => {
+    const noviKontakt = kontakti.map((kontakt) =>
+      kontakt.id === id
+        ? {
+            ime: i,
+            prezime: p,
+            datumrodenja: dr,
+            kontakt: k,
+            clicked: c,
+            id: id,
+          }
+        : kontakt
+    );
+    console.log("context", noviKontakt);
+
+    setKontakti(noviKontakt);
+    setEditItem(null);
+  };
+
+  const findItem = (id) => {
+    const item = kontakti.find((kontakt) => kontakt.id === id);
+
+    setEditItem(item);
+    history.push("/kontakt");
+    console.log(item);
+  };
+
   return (
     <KontaktContext.Provider
-      value={{ kontakti, addKontakt, omiljeni, detaljiK, detalji }}
+      value={{
+        kontakti,
+        addKontakt,
+        omiljeni,
+        detaljiK,
+        detalji,
+        izbrisi,
+        uredi,
+        editItem,
+        findItem,
+      }}
     >
       {props.children}
     </KontaktContext.Provider>

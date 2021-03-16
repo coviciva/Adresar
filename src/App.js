@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import React from "react";
 import Form from "./Form";
 import { Route, Switch, Redirect } from "react-router-dom";
@@ -20,7 +20,6 @@ function App() {
           <Route path="/" exact component={Form} />
           <Redirect to="/" />
         </Switch>
-        {/* <Form /> */}
       </KontaktContextProvider>
     </div>
   );

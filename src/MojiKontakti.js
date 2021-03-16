@@ -2,19 +2,12 @@ import React, { useContext, useState } from "react";
 import KontaktContext from "./context/KontaktContext";
 import "./MojiKontakti.scss";
 import { Icon, Search } from "semantic-ui-react";
-//import { v4 as uuid } from "uuid";
 import { Link } from "react-router-dom";
 
 const MojiKontakti = (props) => {
   const { kontakti, omiljeni, detalji } = useContext(KontaktContext);
 
   const [search, setSearch] = useState("");
-
-  // const [listaKontakata, setListaKontakata] = useState([]);
-
-  /*  useEffect(() => {
-    setListaKontakata([...listaKontakata, { kontakti }]);
-  }, [kontakti]); */
 
   return (
     <div>
@@ -28,8 +21,6 @@ const MojiKontakti = (props) => {
       <div>
         {console.log("MojiKontakti")}
         {console.log(kontakti)}
-
-        {/* <h1 className="tekst">Moji kontakti</h1> */}
 
         {kontakti
           .filter((kontakt) => {

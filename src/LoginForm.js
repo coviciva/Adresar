@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Form } from "semantic-ui-react";
 import useForm from "./useForm";
 import validateInfo from "./validateInfo";
-import "./loginForm.scss";
+import "./LoginForm.scss";
 
 const FormExampleForm = ({ submitForm }) => {
   const { handleChange, values, handleSubmit, errors } = useForm(
