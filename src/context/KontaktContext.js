@@ -1,10 +1,13 @@
 import React, { createContext, useState } from "react";
 import { useHistory } from "react-router-dom";
+import data from "../data/data";
 
 const KontaktContext = createContext();
 
 function KontaktContextProvider(props) {
-  const [kontakti, setKontakti] = useState([]);
+  const [kontakti, setKontakti] = useState(
+    data.sort((a, b) => (a.prezime > b.prezime ? 1 : -1))
+  );
 
   const [editItem, setEditItem] = useState(null);
 

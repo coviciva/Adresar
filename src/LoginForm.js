@@ -38,7 +38,9 @@ const FormExampleForm = ({ submitForm }) => {
             {errors.password && <p className="error">{errors.password}</p>}
           </Form.Field>
 
-          <Button type="submit">Prijava</Button>
+          <Button type="submit" color="green">
+            Prijava
+          </Button>
         </Form>
       </div>
     </div>

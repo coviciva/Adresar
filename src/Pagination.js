@@ -11,7 +11,7 @@ const Pagination = ({ contactsPerPage, totalContacts, paginate }) => {
     <nav>
       <ul>
         {pageNumbers.map((number) => (
-          <b key={number}>
+          <b key={number} className="pageNum">
             {" "}
             <a onClick={() => paginate(number)} href="#!" className="page">
               {number}

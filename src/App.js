@@ -10,7 +10,7 @@ import Detalji from "./Detalji";
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <KontaktContextProvider>
         <Switch>
           <Route path="/kontakt" exact component={Kontakt} />

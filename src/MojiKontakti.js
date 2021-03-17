@@ -11,7 +11,7 @@ const MojiKontakti = (props) => {
   const [search, setSearch] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [contactsPerPage] = useState(2);
+  const [contactsPerPage] = useState(15);
 
   const indexOfLastContact = currentPage * contactsPerPage;
   const indexOfFirstContact = indexOfLastContact - contactsPerPage;
@@ -50,6 +50,7 @@ const MojiKontakti = (props) => {
             } else if (kontakt.kontakt.includes(search)) {
               return kontakt;
             }
+            return null;
           })
           .map((kontakt) => {
             return (

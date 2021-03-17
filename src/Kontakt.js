@@ -134,7 +134,9 @@ const Kontakt = () => {
           />
         </Form.Field>
 
-        <Button type="submit">Spremi</Button>
+        <Button type="submit" color="green">
+          Spremi
+        </Button>
       </Form>
     </div>
   );
