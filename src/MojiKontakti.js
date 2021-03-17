@@ -3,11 +3,24 @@ import KontaktContext from "./context/KontaktContext";
 import "./MojiKontakti.scss";
 import { Icon, Search } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import Pagination from "./Pagination";
 
 const MojiKontakti = (props) => {
   const { kontakti, omiljeni, detalji } = useContext(KontaktContext);
 
   const [search, setSearch] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [contactsPerPage] = useState(2);
+
+  const indexOfLastContact = currentPage * contactsPerPage;
+  const indexOfFirstContact = indexOfLastContact - contactsPerPage;
+  const currentContacts = kontakti.slice(
+    indexOfFirstContact,
+    indexOfLastContact
+  );
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div>
@@ -22,7 +35,7 @@ const MojiKontakti = (props) => {
         {console.log("MojiKontakti")}
         {console.log(kontakti)}
 
-        {kontakti
+        {currentContacts
           .filter((kontakt) => {
             if (search === "") {
               return kontakt;
@@ -58,6 +71,12 @@ const MojiKontakti = (props) => {
             );
           })}
       </div>
+
+      <Pagination
+        contactsPerPage={contactsPerPage}
+        totalContacts={kontakti.length}
+        paginate={paginate}
+      />
     </div>
   );
 };

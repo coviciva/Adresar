@@ -1,18 +1,11 @@
-//import React, { useContext } from "react";
 import React, { useState, useContext, useEffect } from "react";
 import { Button, Form } from "semantic-ui-react";
 import "./Kontakt.scss";
-//import useFormKontakt from "./useFormKontakt";
-//import validateInfoKontakt from "./validateInfoKontakt";
 import KontaktContext from "./context/KontaktContext";
 import { v4 as uuid } from "uuid";
 import { useHistory } from "react-router-dom";
 //import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
-/*const { handleChange, values, handleSubmit, errors } = useFormKontakt(
-  validateInfoKontakt
-);*/
 
 const options = [
   { key: "m", text: "Mobitel", value: "mobitel" },
@@ -86,28 +79,22 @@ const Kontakt = () => {
           <input
             placeholder="Ime"
             name="ime"
-            /*value={values.ime}/
-            /onChange={handleChange}*/
             value={data.ime}
             onChange={handleChange}
             required
             maxLength="100"
           />
-          {/* {errors.ime && <p className="error">{errors.ime}</p>} */}
         </Form.Field>
         <Form.Field>
           <label>Prezime</label>
           <input
             placeholder="Prezime"
             name="prezime"
-            /*value={values.prezime}
-              onChange={handleChange}*/
             value={data.prezime}
             onChange={handleChange}
             required
             maxLength="300"
           />
-          {/* {errors.prezime && <p className="error">{errors.prezime}</p>} */}
         </Form.Field>
 
         <Form.Field>
@@ -122,7 +109,7 @@ const Kontakt = () => {
 
         {/*         <DatePicker
           selected={data.datumrodenja}
-          onChange={handleChange}
+          onChange={handleChangeDate}
           placeholderText="Datum rođenja"
           //value={data.datumrodenja}
         /> */}
@@ -141,26 +128,14 @@ const Kontakt = () => {
           <input
             placeholder="Kontakt"
             name="kontakt"
-            /*value={values.kontakt}
-              onChange={handleChange}*/
             value={data.kontakt}
             onChange={handleChange}
             required
           />
-          {/* {errors.kontakt && <p className="error">{errors.kontakt}</p>} */}
         </Form.Field>
 
         <Button type="submit">Spremi</Button>
-
-        {/*         <Link to="/adresar">
-          <Button type="submit">Moj adresar</Button>
-        </Link> */}
       </Form>
-
-      <h3>Ime: {data.ime}</h3>
-      <h3>Prezime: {data.prezime}</h3>
-      <h3>Datum rođenja: {data.datumrodenja}</h3>
-      <h3>Kontakt: {data.kontakt}</h3>
     </div>
   );
 };
